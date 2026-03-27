@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antoine Nguyen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f1ede4;
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: #000;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            letter-spacing: 0.05em;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: #000;
+            font-size: 1.2rem;
+            line-height: 1;
+            transition: opacity 0.2s;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.6;
+        }
+
+        main {
+            margin-bottom: 3rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        blockquote {
+            border-left: 2px solid #000;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-meta {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .project p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            border-top: 1px solid #ccc;
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #000;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        em {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hi! I'm Antoine.</h1>
+            <div class="social-icons">
+                <a href="https://github.com/antoinenguyen27" title="GitHub" aria-label="GitHub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/antoine-n-633b84200/" title="LinkedIn" aria-label="LinkedIn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <p>I'm a computing science student based in Sydney.</p>
+
+            <p>I like building things I don't fully understand yet.</p>
+
+            <p>Most of what I do sits somewhere between <strong>curiosity and experimentation —</strong> almost always around AI systems.</p>
+
+            <p>I spent most of last year delving into startups.</p>
+
+            <p>Right now, I'm exploring a simple idea:</p>
+
+            <blockquote>
+                A sufficiently good memory system might be indistinguishable from continual learning.
+            </blockquote>
+
+            <p>If a system can store, retrieve, and integrate past experience well enough, does it really need to update its weights? Or can memory alone approximate the effect of learning?</p>
+
+            <p>I don't know the answer yet. But it feels like something worth poking at. You'll see the build list below update with some things I've been trying soon :).</p>
+
+            <p><em>(Update 27 Mar 2026): Seems a lot of recent literature is headed this way!</em></p>
+
+            <h2>What I've Been Building</h2>
+
+            <div class="project">
+                <h3>ProbeGen (2026 — ongoing)</h3>
+                <p>On every agent I've worked on, evals always lagged behind the agent's development. So I'm building a GitHub Action that watches changes to agent harnesses and suggests targeted evals.</p>
+                <p>The idea: if you change behaviour, you should automatically test what that <em>new behaviour actually is</em>.</p>
+                <p>It parses PR diffs, infers behavioural changes, retrieves similar evals (LangSmith etc.), and generates new probes—with human-in-the-loop approval.</p>
+                <p><em>Note: Doesn't work quite yet (some wiring to do + integration hell)</em></p>
+            </div>
+
+            <div class="project">
+                <h3>Context Compression API (FoundersHack Hackathon Winner, 2026)</h3>
+                <p class="project-meta">Built in ~48 hours.</p>
+                <p>Trained models to drop useless tokens from both:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                    <li>video (frames / scenes)</li>
+                    <li>text (filler tokens)</li>
+                </ul>
+                <p>Goal: reduce cost without hurting downstream model performance.</p>
+                <p>Tried two approaches:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                    <li>training-free (CLIP + scene segmentation)</li>
+                    <li>RL-based compression</li>
+                </ul>
+                <p>Also distilled a BERT-based token filter from LLM-Lingua-2 for lower latency.</p>
+                <p>Main constraint: compression must be cheaper than doing nothing.</p>
+                <p><em>Notes: Did two hackathons at the same time, this was one of them.</em></p>
+            </div>
+
+            <div class="project">
+                <h3>Runtime Steering Vectors for LLM Alignment (Apart Research AI Control Hackathon 2026)</h3>
+                <p>A small framework for detecting and correcting misaligned behaviour at runtime.</p>
+                <p>Used linear probes to detect things like:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                    <li>scheming</li>
+                    <li>shortcuts</li>
+                    <li>dishonesty</li>
+                </ul>
+                <p>Then injected steering vectors directly into the residual stream.</p>
+                <p>Very experimental. Mostly exploring whether lightweight control is viable.</p>
+                <p><em>Notes: This was the second hackathon. We didn't win, but we got both hacks to the end!</em></p>
+            </div>
+
+            <div class="project">
+                <h3>AgentUQ (2026)</h3>
+                <p>A simple framework for adding uncertainty quantification into agent workflows.</p>
+                <p>Abstracts:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                    <li>algorithms</li>
+                    <li>configuration</li>
+                    <li>decision logic</li>
+                </ul>
+                <p><em>Notes: Uncertainty quantification has always felt too "experimental" for adoption into actual agent stacks.</em></p>
+                <p>But I figured, they're lighter than judges, and carry more "semantics" than formal verifiers, so they were at least worth a shot.</p>
+                <p>The idea was to assess how sure an agent is before executing what it does, or listening to what it says.</p>
+                <p>Basically I wanted to see what a system that used UQ could look like, so I built a simple framework for adding uncertainty quantification into agent workflows. With the right abstractions that would make it easier for developers to accept.</p>
+                <p>In the end, the math underneath a lot of UQ methods, especially beneath LLMs tends to fall apart in practice. "Uncertainty" itself is of course a flawed metric to track in LLMs, as LLMs can hallucinate with confidence.</p>
+            </div>
+
+            <div class="project">
+                <h3>Browser Use Voice Agent (Mistral AI Global Hackathon, 2026)</h3>
+                <p class="project-meta">Built in ~36 hours.</p>
+                <p>An agent that:</p>
+                <ol style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                    <li>Watches you perform a task once</li>
+                    <li>Asks questions</li>
+                    <li>Repeats it later via voice</li>
+                </ol>
+                <p>It spawns its own browser and tries to generalise across messy, real-world websites.</p>
+                <p>Surprisingly decent at handling variation after just one demonstration.</p>
+                <p><em>Notes: This one was painful, 15mins sleep on three plastic chairs I pulled together. Was too stubborn to use any browser use abstractions, so built my own harness first, twice (with a 4am codebase rebuild), then left it up to Stagehand.</em></p>
+            </div>
+
+            <div class="project">
+                <h3>Apples2Oranges (2025)</h3>
+                <p>I went through an on-device phase, so built a local tool for comparing LLMs side-by-side on your own device.</p>
+                <p>Tracks:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                    <li>response quality</li>
+                    <li>tokens/sec</li>
+                    <li>CPU/GPU usage</li>
+                    <li>memory, thermals, power</li>
+                </ul>
+                <p>Built with Rust + Tauri. Lots of time spent dealing with native macOS + llama.cpp quirks.</p>
+                <p><em>Notes: I'm on an M1 Macbook air with just 8gb of ram, so testing this app by running two LLMs locally was not a very nice experience.</em></p>
+            </div>
+
+            <div class="project">
+                <h3>SMVAE (2024)</h3>
+                <p>This was not too long after Alphafold 3 dropped, which sent me into a comp. bio. rabbit hole.</p>
+                <p>A simplified molecular VAE inspired by JTVAE. (basically a model that generated novel molecules).</p>
+                <p>Goal: make molecular generation feasible on limited compute.</p>
+                <p>Instead of building molecules atom-by-atom, it generates valid substructures (like rings), which helped reach 100% structural validity. Though, how good the molecules are, I have no idea.</p>
+                <p><em>Notes: This actually started because I wanted to play with JTVAE (I found it to be a very cool and elegant method), but I couldn't get their repo to work. So naturally, I built my own version…</em></p>
+            </div>
+
+            <div class="project">
+                <h3>IELTS AI Platform (2024)</h3>
+                <p>Built for friends preparing for IELTS.</p>
+                <p>AI system that:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                    <li>marks writing</li>
+                    <li>analyses pronunciation word-by-word</li>
+                </ul>
+                <p><em>Notes: Spent way more time curating assessment material instead of coding. (AI wasn't so good at this yet).</em></p>
+            </div>
+
+            <div class="project">
+                <h3>Earlier Projects</h3>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Emergency call script generator (with location + medical context)</li>
+                    <li>Small business rewards platform with AI-generated marketing content</li>
+                </ul>
+            </div>
+
+            <h2>Other Things</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
+                <li>Did Blackbird Giants Cohort 10</li>
+                <li>Part of a small research group exploring continual learning in LLMs</li>
+                <li>Hackathons whenever possible</li>
+                <li>Previously a ramen cook</li>
+            </ul>
+        </main>
+
+        <footer>
+            <a href="https://github.com/antoinenguyen27">GitHub</a>
+            <a href="https://www.linkedin.com/in/antoine-n-633b84200/">LinkedIn</a>
+        </footer>
+    </div>
+</body>
+</html>
