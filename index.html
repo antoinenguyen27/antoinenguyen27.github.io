@@ -169,7 +169,7 @@
             <h2>What I've Been Building</h2>
 
             <div class="project">
-                <h3>ProbeGen (2026 — ongoing)</h3>
+                <h3>Parity (2026 — ongoing)</h3>
                 <p>On every agent I've worked on, evals always lagged behind the agent's development. So I'm building a GitHub Action that watches changes to agent harnesses and suggests targeted evals.</p>
                 <p>The idea: if you change behaviour, you should automatically test what that <em>new behaviour actually is</em>.</p>
                 <p>It parses PR diffs, infers behavioural changes, retrieves similar evals (LangSmith etc.), and generates new probes—with human-in-the-loop approval.</p>
@@ -218,11 +218,14 @@
                     <li>configuration</li>
                     <li>decision logic</li>
                 </ul>
-                <p><em>Notes: Uncertainty quantification has always felt too "experimental" for adoption into actual agent stacks.</em></p>
-                <p>But I figured, they're lighter than judges, and carry more "semantics" than formal verifiers, so they were at least worth a shot.</p>
-                <p>The idea was to assess how sure an agent is before executing what it does, or listening to what it says.</p>
-                <p>Basically I wanted to see what a system that used UQ could look like, so I built a simple framework for adding uncertainty quantification into agent workflows. With the right abstractions that would make it easier for developers to accept.</p>
-                <p>In the end, the math underneath a lot of UQ methods, especially beneath LLMs tends to fall apart in practice. "Uncertainty" itself is of course a flawed metric to track in LLMs, as LLMs can hallucinate with confidence.</p>
+                <p><em>
+                Notes: Uncertainty quantification has always felt too "experimental" for adoption into actual agent stacks.
+                But I figured they're lighter than judges and carry more semantics than formal verifiers, so they were at least worth a shot.
+                The idea was to assess how sure an agent is before executing what it does, or listening to what it says.
+                Basically I wanted to see what a system using UQ could look like, so I built a simple framework for adding uncertainty quantification into agent workflows with abstractions that might make it easier for developers to accept.
+                In the end, the math underneath a lot of UQ methods, especially beneath LLMs tends to fall apart in practice. "Uncertainty" itself is of course a flawed metric to track in LLMs, as LLMs can hallucinate with confidence.
+                </em></p>
+
             </div>
 
             <div class="project">
