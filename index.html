@@ -216,50 +216,53 @@
                 <div class="project">
                     <h3>RETRO-GRPO (2026 - Ongoing)</h3>
                     <p>
-                        Two interesting ideas that have popped up here and there
-                        are letting models reflect / use prior experiences to
-                        improve RL (critique-GRPO, iGRPO), and also to utilise
-                        in-context learning in conjunction with RL (ICRL, or
-                        with self-distillation in SDFT). The problem is simple,
-                        when LLMs train with RL, they explore by trying lots of
-                        approaches and reinforcing what works. However, on hard
-                        problems, 0 reward roll outs and performance plateaus,
-                        it doesn't actually get to explicitly see what worked
-                        and what didn't work - this is typically just encoded
-                        implicitly via weight update. In-context conditioning on
-                        prior experiences can help them explore more
-                        productively.
+                        Reinforcement learning for LLMs wastes a lot of
+                        exploration.
                     </p>
 
                     <p>
-                        Prior methods combining in-context learning with RL
-                        however tend to narrow the exploration space heavily by
-                        encouraging specific solutions. iGRPO only takes the
-                        highest performing rollouts, ICRL and SDFT depend on
-                        exemplar demonstrations or few shot examples. This is
-                        less "learning via exploration" in the Sutton sense of
-                        experiential learning that RL was designed for.
+                        On difficult problems the model often keeps trying
+                        similar strategies and failing, with most of the
+                        learning happening indirectly through gradient updates.
                     </p>
 
                     <p>
-                        Retrospective GRPO (RETRO-GRPO) (name is work in
-                        progress) takes lower reward runs, summarises what the
-                        model tried and how it went, then injects these
-                        experiences explicitly into the prompt at the next
-                        round. The model reads it, reasons about what to do
-                        differently, and explores more productively, we then
-                        anneal the presentation of these summaries so the
-                        learning is not dependent on the experience
-                        conditioning. RETRO-GRPO (sounds sillier the more I type
-                        it) does not explicitly guide towards successful
-                        methods,but encourages exploration away from
-                        unsuccessful ones
+                        There's already work on conditioning RL with prior
+                        experience - ICRL, SDFT, and iGRPO guide exploration
+                        using demonstrations or strong rollouts, and my
+                        additional views are probably not unique. These methods
+                        work well in many settings, but they can also sharpen
+                        the policy around specific solutions, narrowing
+                        exploration in a way that departs from the more
+                        open-ended, experiential learning style Sutton
+                        originally envisioned for RL.
+                    </p>
+
+                    <p>I'm exploring a slightly different angle:</p>
+
+                    <p>conditioning on summaries of failed attempts.</p>
+
+                    <p>
+                        After each round of attempts, a small summariser
+                        describes what strategies were tried and how they ended
+                        up. The model reads this before the next round of
+                        rollouts.
+                    </p>
+
+                    <p>
+                        Instead of showing what worked, the context simply
+                        records what has already been tried. The model decides
+                        where to explore next.
+                    </p>
+
+                    <p>
+                        Over time the summaries are removed so the behaviour
+                        transfers into the weights.
                     </p>
                     <p>
                         <em
-                            >Note: This is an early step for Burra (learning
-                            from experience), but really more to satisfy my own
-                            curiosity.</em
+                            >Note: This one will be fun. I do not like the
+                            name</em
                         >
                     </p>
                 </div>
