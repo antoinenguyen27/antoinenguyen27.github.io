@@ -90,6 +90,15 @@
                 margin-bottom: 1.5rem;
             }
 
+            .project.is-expandable {
+                cursor: pointer;
+            }
+
+            .project.is-expandable:focus {
+                outline: 1px solid #000;
+                outline-offset: 0.35rem;
+            }
+
             .project-meta {
                 color: #666;
                 font-size: 0.95rem;
@@ -98,6 +107,24 @@
 
             .project p {
                 margin-bottom: 0.5rem;
+            }
+
+            .project-extra {
+                display: none;
+            }
+
+            .project.is-expanded .project-extra {
+                display: block;
+            }
+
+            .project-toggle {
+                color: #666;
+                display: inline;
+                text-decoration: underline;
+            }
+
+            .project-toggle:hover {
+                color: #000;
             }
 
             footer {
@@ -198,7 +225,10 @@
 
                 <div class="project">
                     <h3>Julia / Beacons-1 (2026)</h3>
-                    <p class="project-meta">Built in ~72 hours.</p>
+                    <p class="project-meta">
+                        Targeting COVID with AI. Built in ~72 hours with Chris
+                        Yoo, Eric Ren and Kevin Lin. Won 25k OpenAI credits.
+                    </p>
                     <p>
                         Built an agentic workspace for in-silico protein
                         discovery. It searches papers and protein databases,
@@ -353,7 +383,10 @@
                         2026)
                     </h3>
                     <p class="project-meta">Built in ~48 hours.</p>
-                    <p>Trained models to drop useless tokens from both:</p>
+                    <p>
+                        Trained models to drop useless tokens in bloated context
+                        windows from both:
+                    </p>
                     <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem">
                         <li>video (frames / scenes)</li>
                         <li>text (filler tokens)</li>
@@ -454,7 +487,7 @@
                         2026)
                     </h3>
                     <p class="project-meta">Built in ~36 hours.</p>
-                    <p>An agent that:</p>
+                    <p>A browser use agent that...</p>
                     <ol style="margin-left: 1.5rem; margin-bottom: 0.5rem">
                         <li>Watches you perform a task once</li>
                         <li>Asks questions</li>
@@ -524,8 +557,9 @@
                 <div class="project">
                     <h3>SMVAE (2024)</h3>
                     <p>
+                        A model that generates new molecules for drug discovery.
                         This was not too long after Alphafold 3 dropped, which
-                        sent me into a comp. bio. rabbit hole.
+                        sent me into a comp bio rabbit hole.
                     </p>
                     <p>
                         A simplified molecular VAE inspired by JTVAE. (basically
@@ -562,14 +596,13 @@
                     <p>
                         <em
                             >Notes: Spent way more time curating assessment
-                            material instead of coding. (AI wasn't so good at
-                            this yet).</em
+                            material instead of coding.</em
                         >
                     </p>
                 </div>
 
-                <div class="project">
-                    <h3>Earlier Projects</h3>
+                <div class="project project-static">
+                    <h3>Earlier Projects (<2023)</h3>
                     <ul style="margin-left: 1.5rem">
                         <li>
                             Emergency call script generator (with location +
@@ -585,11 +618,6 @@
                 <h2>Other Things</h2>
                 <ul style="margin-left: 1.5rem; margin-bottom: 2rem">
                     <li>Did Blackbird Giants Cohort 10</li>
-                    <li>
-                        Part of a small research group exploring continual
-                        learning in LLMs
-                    </li>
-                    <li>Hackathons whenever possible</li>
                     <li>Got a cert in programming quantum algorithms</li>
                     <li>Previously a ramen cook</li>
                 </ul>
@@ -602,5 +630,76 @@
                 >
             </footer>
         </div>
+        <script>
+            document.querySelectorAll(".project").forEach((project) => {
+                if (project.classList.contains("project-static")) {
+                    return;
+                }
+
+                const children = Array.from(project.children);
+                const firstParagraphIndex = children.findIndex(
+                    (child) =>
+                        child.tagName === "P" &&
+                        !child.classList.contains("project-meta"),
+                );
+
+                const summaryEndIndex =
+                    firstParagraphIndex === -1
+                        ? children.findIndex(
+                              (child) =>
+                                  child.tagName !== "H3" &&
+                                  !child.classList.contains("project-meta"),
+                          ) - 1
+                        : firstParagraphIndex;
+
+                if (
+                    summaryEndIndex < 0 ||
+                    summaryEndIndex === children.length - 1
+                ) {
+                    return;
+                }
+
+                if (firstParagraphIndex !== -1) {
+                    children[firstParagraphIndex].classList.add(
+                        "project-summary",
+                    );
+                }
+
+                const extra = document.createElement("div");
+                extra.className = "project-extra";
+
+                children.slice(summaryEndIndex + 1).forEach((child) => {
+                    extra.appendChild(child);
+                });
+
+                const toggle = document.createElement("span");
+                toggle.className = "project-toggle";
+                toggle.textContent = "See more";
+
+                project.append(toggle, extra);
+                project.classList.add("is-expandable");
+                project.tabIndex = 0;
+                project.setAttribute("role", "button");
+                project.setAttribute("aria-expanded", "false");
+
+                const setExpanded = (expanded) => {
+                    project.classList.toggle("is-expanded", expanded);
+                    project.setAttribute("aria-expanded", String(expanded));
+                    toggle.textContent = expanded ? "See less" : "See more";
+                };
+
+                const toggleExpanded = () => {
+                    setExpanded(!project.classList.contains("is-expanded"));
+                };
+
+                project.addEventListener("click", toggleExpanded);
+                project.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        toggleExpanded();
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
